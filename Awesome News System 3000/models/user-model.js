@@ -39,5 +39,16 @@ let userSchema = new mongoose.Schema({
     }]
 });
 
+let User;
+userSchema.static('getUser', (user) => {
+    return new User({
+        name: user.name,
+        email: user.email,
+        passHash: user.passHash,
+        favouriteArticles: user.favouriteArticles || [],
+        selectedMedia: user.selectedMedia || []
+    });
+});
+
 mongoose.model("User", userSchema);
 module.exports = mongoose.model("User");

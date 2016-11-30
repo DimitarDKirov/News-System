@@ -1,0 +1,18 @@
+extends ../_layout
+
+block app-title
+    | Login Awesome News 3000
+
+block content
+    h1 Login here: 
+
+    div.panel.panel-default
+        form(method="POST" action="/user/login")
+            input(type="text" name="username" placeholder="Username")   
+            input(type="password" name="password" placeholder="Password") 
+            button(type="submit" value="Submit") 
+                | Submit
+    
+        div
+            a.btn.btn-success(href="/user/register")
+                | Register

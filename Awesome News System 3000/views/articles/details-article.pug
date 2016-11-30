@@ -1,10 +1,21 @@
 extends ../_layout
 
 block app-title
-    | Details
+    | #{result.title} Details
 
 block content
-    h1 Article Details #{result.title}
+    div.col-lg-8
+        h1 #{result.title}
 
-    h2 
-        | by
+        h2 
+            | by #{result.author}
+    
+        div.panel.panel-default
+            p 
+                | #{result.description}
+                br
+                a.see-more(href=result.url)
+                    | See more
+
+        a.btn.btn-success(href="#")
+            | Add to Favourite Articles

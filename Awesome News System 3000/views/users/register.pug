@@ -1,0 +1,16 @@
+extends ../_layout
+
+block app-title
+    | Register Awesome News 3000
+
+block content
+    h1 Register here: 
+
+    div.panel.panel-default
+        form(method="POST" action="/user/register" )
+            input(type="text" name="username" placeholder="Username")
+            input(type="text" name="email" placeholder="E-mail")            
+            input(type="password" name="password" placeholder="Password") 
+            button(type="submit" value="Submit") 
+                | Submit
+    
