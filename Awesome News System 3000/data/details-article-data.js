@@ -1,16 +1,16 @@
 /* globals module Promise*/
 
 module.exports = function(models) {
-    let simpleArticle = models.simpleArticle;
+    let detailedArticle  = models.detailedArticle;
     return {
-        getNewestSimpleArticles() {
+        getArticleDetailsById(id) {
             return new Promise((resolve, reject) => {
-                simpleArticle.find((err, articles) => {
+                detailedArticle.findOne({ _id: id }, (err, article) => {
                     if (err) {
                         return reject(err);
                     }
 
-                    return resolve(articles);
+                    return resolve(article);
                 });
             });
         }

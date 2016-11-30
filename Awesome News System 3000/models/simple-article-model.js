@@ -2,7 +2,7 @@
 
 const mongoose = require("mongoose");
 
-let schema = new mongoose.Schema({
+let simpleArticleSchema = new mongoose.Schema({
     source: {
         type: String,
         required: true
@@ -19,6 +19,5 @@ let schema = new mongoose.Schema({
     }
 });
 
-mongoose.model("SimpleArticle", schema);
-
+mongoose.model("SimpleArticle", simpleArticleSchema);
 module.exports = mongoose.model("SimpleArticle");

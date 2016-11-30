@@ -2,7 +2,7 @@
 
 const mongoose = require("mongoose");
 
-let schema = new mongoose.Schema({
+let commentSchema = new mongoose.Schema({
     author: {
         type: String,
         required: true
@@ -17,6 +17,6 @@ let schema = new mongoose.Schema({
     }
 });
 
-mongoose.model("Comment", schema);
+mongoose.model("Comment", commentSchema);
 
 module.exports = mongoose.model("Comment");

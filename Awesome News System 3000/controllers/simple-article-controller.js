@@ -5,7 +5,7 @@ module.exports = function(data) {
         getSimpleArticles(req, res) {
             data.getNewestSimpleArticles()
                 .then(simpleArticles => {
-                    res.render("simpleArticle-list", {
+                    res.render("../views/articles/simple-article-list", {
                         result: simpleArticles
                     });
                 });

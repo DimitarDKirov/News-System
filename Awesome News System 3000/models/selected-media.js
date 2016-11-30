@@ -2,7 +2,7 @@
 
 const mongoose = require("mongoose");
 
-let schema = new mongoose.Schema({
+let selectedMediaSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -12,6 +12,5 @@ let schema = new mongoose.Schema({
     }
 });
 
-mongoose.model("SelectedMedia", schema);
-
+mongoose.model("SelectedMedia", selectedMediaSchema);
 module.exports = mongoose.model("SelectedMedia");

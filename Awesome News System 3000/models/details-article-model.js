@@ -2,7 +2,7 @@
 
 const mongoose = require("mongoose");
 
-let schema = new mongoose.Schema({
+let detailedArticleSchema = new mongoose.Schema({
     source: {
         type: String,
         required: true
@@ -44,6 +44,5 @@ let schema = new mongoose.Schema({
     }]
 });
 
-mongoose.model("ArticleDetails", schema);
-
+mongoose.model("ArticleDetails", detailedArticleSchema);
 module.exports = mongoose.model("ArticleDetails");

@@ -8,10 +8,10 @@ module.exports = function(config) {
     mongoose.Promise = global.Promise;
     mongoose.connect(config.connectionString);
 
-    let simpleArticle = require("../models/simpleArticle-model");
-    let articleDetails = require("../models/articleDetails-model");
+    let simpleArticle = require("../models/simple-article-model");
+    let detailedArticle = require("../models/details-article-model");
 
-    let models = { simpleArticle, articleDetails };
+    let models = { simpleArticle, detailedArticle };
     let data = {};
 
     fs.readdirSync("./data")
