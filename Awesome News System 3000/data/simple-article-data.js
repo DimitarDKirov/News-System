@@ -29,6 +29,16 @@ module.exports = function(models) {
                     return resolve(searchObj);
                 });
             });
+        },
+        getSimpleArticleByName(input) {
+            return new Promise((resolve, reject) => {
+                simpleArticle.find({ "title": { "$regex": String(input), "$options": "i" } }, (err, article) => {
+                    if (err) {
+                        return reject(err);
+                    }
+                    return resolve(article);
+                });
+            });
         }
     }
 }
