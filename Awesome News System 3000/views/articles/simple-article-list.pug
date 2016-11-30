@@ -10,7 +10,7 @@ block content
         each article in result
             div.panel.panel-default
                 div.panel-body
-                    img(src="article.imageUrl", alt="image")
+                    img.img-responsive(src= article.imageUrl, alt="image")
                     h2
                         a(href="/article-details/" + article.id)
                             | #{article.title}
