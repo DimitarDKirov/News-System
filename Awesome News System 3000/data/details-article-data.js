@@ -1,11 +1,12 @@
 /* globals module Promise*/
 
 module.exports = function(models) {
-    let detailedArticle  = models.detailedArticle;
+    let detailedArticle = models.detailedArticle;
+
     return {
-        getArticleDetailsById(id) {
+        getArticleDetailsBySourceAndTitle(article) {
             return new Promise((resolve, reject) => {
-                detailedArticle.findOne({ _id: id }, (err, article) => {
+                detailedArticle.findOne({ source: article.source, title: article.title }, (err, article) => {
                     if (err) {
                         return reject(err);
                     }

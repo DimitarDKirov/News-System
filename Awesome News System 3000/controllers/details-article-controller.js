@@ -1,12 +1,11 @@
 /* globals require module */
 
-module.exports = function (data) {
+module.exports = function(data) {
     return {
         getArticleDetails(req, res) {
-            let id = req.params.id;
-            data.getSimpleArticleById(id)
-                .then(() => {
-                    data.getArticleDetailsById(id)
+            data.getSimpleArticleById(req.params.id)
+                .then(result => {
+                    data.getArticleDetailsBySourceAndTitle(result)
                         .then(articleDetails => {
                             res.render("../views/articles/details-article", {
                                 result: articleDetails
