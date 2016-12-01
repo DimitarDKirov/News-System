@@ -15,6 +15,10 @@ module.exports = function (data) {
                     res.status(401).redirect("/user/unauthorized");
                 }
 
+                if (!req.isAuthenticated()) {
+                    res.status(401).redirect("/user/unauthorized");
+                }
+
                 req.login(user, error => {
                     if (error) {
                         next(error);
@@ -43,10 +47,9 @@ module.exports = function (data) {
 
             data.createNewUser(user)
                 .then(dbUser => {
-                    res.status(201).json(dbUser);
-                })
-                .then(() => {
-                    res.redirect("../views/users/user-profile")
+                    res.render("../views/users/user-profile", {
+                        result: dbUser
+                    })
                 })
                 .catch(error => res.status(500).json(error));
         }
