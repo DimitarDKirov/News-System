@@ -3,7 +3,7 @@
 const config = require("./config/app");
 
 const app = require("./config/app/application");
-const data = require("./data")(config);
+const data = require("./data/index")(config);
 
 require("./routers/index")(app, data);
 
