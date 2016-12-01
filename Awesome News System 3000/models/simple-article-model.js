@@ -1,6 +1,7 @@
 /* globals module require */
 
 const mongoose = require("mongoose");
+const mongoosePaginate = require("mongoose-paginate");
 
 let simpleArticleSchema = new mongoose.Schema({
     source: {
@@ -19,5 +20,6 @@ let simpleArticleSchema = new mongoose.Schema({
     }
 });
 
+simpleArticleSchema.plugin(mongoosePaginate);
 mongoose.model("SimpleArticle", simpleArticleSchema);
 module.exports = mongoose.model("SimpleArticle");

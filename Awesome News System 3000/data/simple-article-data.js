@@ -3,14 +3,18 @@
 module.exports = function(models) {
     let simpleArticle = models.simpleArticle;
     return {
-        getNewestSimpleArticles() {
+        getNewestSimpleArticles(page) {
             return new Promise((resolve, reject) => {
-                simpleArticle.find((err, articles) => {
+                simpleArticle.paginate({}, { page: page, limit: 10, sort: { publishedAt: -1 } }, function(err, result) {
                     if (err) {
                         return reject(err);
                     }
 
-                    return resolve(articles);
+                    if (page > result.total) {
+                        return reject(page);
+                    }
+
+                    return resolve(result.docs);
                 });
             });
         },
