@@ -1,4 +1,4 @@
-/*globals $ toastr*/
+/*globals $ toastr CryptoJS*/
 (function () {
     const UsernameRegex = /^[a-zA-Z0-9]{5,30}$/;
     const PasswordRegex = /^[^<>?$]{5,30}$/;
@@ -24,6 +24,10 @@
                 toastr.error('Invalid email');
                 event.preventDefault();
             }
+        }
+
+        if (!event.isDefaultPrevented()) {
+            $('#password').val(CryptoJS.SHA1(password));
         }
     })
 })();
