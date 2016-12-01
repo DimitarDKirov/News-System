@@ -20,6 +20,7 @@ module.exports = function(app, data) {
         .get("/register", usersController.register)
         .post("/register", authController.register)
         .get("/profile", usersController.profile)
+        .get("/select-media", usersController.selectMedia)
         .get("/unauthorized", usersController.unauthorized)
         .post("/logout", authController.logout);
 

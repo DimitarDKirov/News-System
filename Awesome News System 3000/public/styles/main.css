@@ -1,3 +1,25 @@
 .glyphicon {
     font-size: 1.2em;
 }
+
+.awesomeLogo {
+    margin: 15px;
+}
+
+#logo-abc {
+    width: 150px;
+    background-image: url("http://i.newsapi.org/abc-news-au-m.png");
+}
+
+#footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+}
+
+#footer p {
+    text-align: right;
+}
+

@@ -31,6 +31,10 @@ module.exports = function (data) {
         register(req, res) {
             res.status(200)
                 .render("../views/users/register");
+        },
+        selectMedia(req, res){
+            res.status(200)
+                .render("../views/users/select-media");
         }
     }
 }
