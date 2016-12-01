@@ -11,15 +11,19 @@ module.exports = function (data) {
             res.render("../views/users/login");
         },
         profile(req, res) {
-            if (!req.isAuthenticated()) {
-                res.status(401)
-                    .redirect("/unauthorized");
-            }
-            else {
-                res.render("../views/users/user-profile", {
-                    result: user
+
+            data.getUserById(req.body.id)
+                .then((user) => {
+                    if (!req.isAuthenticated()) {
+                        return res.status(401)
+                            .redirect("/unauthorized");
+                    }
+                    else {
+                        return res.render("../views/users/user-profile", {
+                            result: user
+                        });
+                    }
                 });
-            }
         },
         unauthorized(req, res) {
             res.send(`Not authorized. Need authentication.`);

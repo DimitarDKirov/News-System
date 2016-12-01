@@ -15,6 +15,6 @@ app.use(session({secret: "Awesome"}));
 
 app.set("view engine", "pug");
 app.use("/static", express.static("public"));
-//require("../passport")(app, data);
+require("../passport")(app, data);
 
 module.exports = app;

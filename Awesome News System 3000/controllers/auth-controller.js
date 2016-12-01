@@ -35,16 +35,20 @@ module.exports = function (data) {
             res.redirect("/home");
         },
         register(req, res) {
-            let user = req.body;
+            const user = {
+                name: req.body.name,
+                email: req.body.email,
+                password: req.body.password
+            };
 
-            data.createUser(user)
-                .then((dbUser) => {
-                    res.status(201)
-                        .redirect("/user/profile");
+            data.createNewUser(user)
+                .then(dbUser => {
+                    res.status(201).json(dbUser);
                 })
-                .catch((error) => {
-                    res.status(500).json(error);
+                .then(() => {
+                    res.redirect("../views/users/user-profile")
                 })
+                .catch(error => res.status(500).json(error));
         }
     }
 };

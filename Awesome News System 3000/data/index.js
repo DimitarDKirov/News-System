@@ -10,8 +10,9 @@ module.exports = function(config) {
 
     let simpleArticle = require("../models/simple-article-model");
     let detailedArticle = require("../models/details-article-model");
+    let user = require("../models/user-model");
 
-    let models = { simpleArticle, detailedArticle };
+    let models = { simpleArticle, detailedArticle, user };
     let data = {};
 
     fs.readdirSync("./data")
@@ -25,6 +26,6 @@ module.exports = function(config) {
                     data[key] = dataModule[key];
                 })
         });
-
+        
     return data;
 };

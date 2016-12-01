@@ -9,11 +9,20 @@ let userSchema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     passHash: {
         type: String,
         required: true
+    },
+    salt: {
+        type: String,
+        required: true
+    },
+    roles: {
+        type: [String],
+        default: ['standard']
     },
     favouriteArticles: [{
         source: {
@@ -37,17 +46,6 @@ let userSchema = new mongoose.Schema({
             required: true
         }
     }]
-});
-
-let User;
-userSchema.static('getUser', (user) => {
-    return new User({
-        name: user.name,
-        email: user.email,
-        passHash: user.passHash,
-        favouriteArticles: user.favouriteArticles || [],
-        selectedMedia: user.selectedMedia || []
-    });
 });
 
 mongoose.model("User", userSchema);
