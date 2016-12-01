@@ -1,7 +1,7 @@
 'use strict';
 
 const passport = require('passport');
-const data = require("../../data");
+const data = require("../../data/index");
 const localStrategy = require("./local-strategy")(passport, data);
 
 module.exports = (app, data) => {

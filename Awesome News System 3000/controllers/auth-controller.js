@@ -12,10 +12,7 @@ module.exports = function (data) {
                 }
 
                 if (!user) {
-                    res.json({
-                        success: false,
-                        message: 'Invalid name or password!'
-                    });
+                    res.status(401).redirect("/user/unauthorized");
                 }
 
                 req.login(user, error => {
@@ -24,7 +21,10 @@ module.exports = function (data) {
                         return;
                     }
 
-                    res.redirect('/user/profile');
+                    let user = req.user;
+                    res.status(200).render("../views/users/user-profile", {
+                        result: user
+                    });
                 });
             });
 
@@ -36,7 +36,7 @@ module.exports = function (data) {
         },
         register(req, res) {
             const user = {
-                name: req.body.name,
+                username: req.body.username,
                 email: req.body.email,
                 password: req.body.password
             };

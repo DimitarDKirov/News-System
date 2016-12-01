@@ -16,7 +16,7 @@ module.exports = function (data) {
                 .then((user) => {
                     if (!req.isAuthenticated()) {
                         return res.status(401)
-                            .redirect("/unauthorized");
+                            .redirect("/user/unauthorized");
                     }
                     else {
                         return res.render("../views/users/user-profile", {
@@ -26,7 +26,7 @@ module.exports = function (data) {
                 });
         },
         unauthorized(req, res) {
-            res.send(`Not authorized. Need authentication.`);
+            res.status(401).render("../views/users/unauthorized");
         },
         register(req, res) {
             res.status(200)

@@ -1,11 +1,19 @@
 extends ../_layout
 
 block app-title
-    | #{result.name} Profile 
+    | #{result.username} Profile 
 
 block content
-    h1 Hello, #{result.name}! 
+    h1 Hello, #{result.username}! 
         | It's nice to see you back! We were exprecting you.
 
     div.panel.panel-default
+        a.btn.btn-default(href="/favourites")
+            | View Favourite Articles 
+        br
+        a.btn.btn-default(href="/select-media")
+            | Select Media
+        br
+        a.btn.btn-default(href="/select-media")
+            | Select Media by Country
         

@@ -12,7 +12,7 @@ module.exports = function (models) {
             const passHash = hashing.hashPassword(salt, user.password);
 
             const newUser = new User({
-                name: user.name,
+                username: user.username,
                 email: user.email,
                 passHash,
                 salt,
@@ -44,9 +44,9 @@ module.exports = function (models) {
                 });
             });
         },
-        getUserByName(name) {
+        getUserByUsername(username) {
             return new Promise((resolve, reject) => {
-                User.findOne({ name: name }, (err, user) => {
+                User.findOne({ username: username }, (err, user) => {
                     if (err) {
                         return reject(err);
                     }
