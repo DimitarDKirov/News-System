@@ -12,7 +12,7 @@ module.exports = function(models) {
                         return reject(err);
                     }
 
-                    if (page > result.total) {
+                    if (page > result.pages) {
                         return reject(page);
                     }
 
