@@ -2,12 +2,12 @@
 (function () {
     const UsernameRegex = /^[a-zA-Z0-9]{3,30}$/;
     const PasswordRegex = /^[^<>?$]{5,30}$/;
-    const EmailRegex = /^[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,}$/;
+    const EmailRegex = /^[a-zA-Z0-9._%+-]+@(?:[a-z0-9-]+\.)+[a-z]{2,}$/;
 
     $('#authenticate').submit(function (event) {
         let username = $('#username').val();
         if (!UsernameRegex.test(username)) {
-            toastr.error('Username must contain between 5 and 30 letters or digits');
+            toastr.error('Username must contain between 3 and 30 letters or digits');
             event.preventDefault();
         }
 
