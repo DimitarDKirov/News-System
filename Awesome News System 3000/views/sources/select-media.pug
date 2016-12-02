@@ -1,0 +1,24 @@
+extends ../_layout
+
+block app-title
+    | Select Favourite Media
+
+block content
+    h1 Select your favourite media to receive the latest news from them
+
+    div.list-group-item
+        form#create-shift-form(action="/select-media", method="post")
+            div.form-group
+                each source in result
+                    div.col-sm-6.col-md-4
+                        div.checkbox-inline
+                            div.thumbnail
+                                a(href= source.url)
+                                    img.img-responsive(src= source.urlsToLogos.small alt="source-logo")
+                            input.checkbox-input(type="checkbox", name=`selectedMedia[${source.name}]`, value=source, id=`select-media-${source.name}`)
+                            label(for=`select-media-${source.name}`)= source.name
+                        
+            div.form-group
+                div.col-lg-10
+                    button.btn.btn-success.btn-lg(type="submit" value="Save") 
+                        | Save
