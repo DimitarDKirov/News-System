@@ -50,6 +50,7 @@ body
                     a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-expanded="false")
                             span.glyphicon.glyphicon-menu-hamburger
                                 span.glyphicon-class
+                    if(user)
                     ul.dropdown-menu(role="menu")
                         li
                             a(href="/user/user-profile")
@@ -59,7 +60,7 @@ body
                                 | Selected Media
 
                         li.divider
-                        if(user)
+                        
                         li
                             a(href="/user/logout")
                                 | Logout

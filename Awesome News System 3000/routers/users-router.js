@@ -2,13 +2,8 @@
 
 module.exports = function(app, data) {
     const express = require("express");
-    // const passport = require("../config/passport");
-    const createUsersController = require("../controllers/users-controller");
-    const createAuthController = require("../controllers/auth-controller");
-    //const data = require("./data");
-
-    const authController = createAuthController(data);
-    const usersController = createUsersController(data);
+    const usersController = require("../controllers/users-controller")(data);
+    const authController = require("../controllers/auth-controller")(data);
 
     const usersRouter = express.Router();
 

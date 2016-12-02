@@ -1,10 +1,10 @@
 'use strict';
 
 const passport = require('passport');
-const data = require("../../data/index");
-const localStrategy = require("./local-strategy")(passport, data);
 
 module.exports = (app, data) => {
+    const localStrategy = require("./local-strategy")(passport, data);
+    
     passport.serializeUser((user, done) => {
         if (user) {
             done(null, user.id);
