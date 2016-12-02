@@ -6,16 +6,13 @@ module.exports = function (data) {
     return {
         login(req, res, next) {
             const auth = passport.authenticate('local', function (error, user) {
+                
                 if (error) {
                     next(error);
                     return;
                 }
 
                 if (!user) {
-                    res.status(401).redirect("/user/unauthorized");
-                }
-
-                if (!req.isAuthenticated()) {
                     res.status(401).redirect("/user/unauthorized");
                 }
 
@@ -36,7 +33,7 @@ module.exports = function (data) {
         },
         logout(req, res) {
             req.logout();
-            res.redirect("/home");
+            res.status(200).redirect("/");
         },
         register(req, res) {
             const user = {

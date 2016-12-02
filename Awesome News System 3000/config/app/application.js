@@ -1,13 +1,18 @@
 /* globals require module */
 
+const config = require("./index");
+
 const express = require("express");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 
-const data = require("../../data");
+const data = require("../../data/index")(config);
 
-const app = express();
+let app = express();
+
+app.set("view engine", "pug");
+app.use("/static", express.static("public"));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,8 +23,7 @@ app.use(session({
     saveUninitialized: true
 }));
 
-app.set("view engine", "pug");
-app.use("/static", express.static("public"));
 require("../passport")(app, data);
+require("../../routers")(app, data);
 
 module.exports = app;

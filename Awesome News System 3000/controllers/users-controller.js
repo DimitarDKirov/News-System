@@ -14,15 +14,9 @@ module.exports = function (data) {
 
             data.getUserById(req.body.id)
                 .then((user) => {
-                    if (!req.isAuthenticated()) {
-                        return res.status(401)
-                            .redirect("/user/unauthorized");
-                    }
-                    else {
-                        return res.render("../views/users/user-profile", {
-                            result: user
-                        });
-                    }
+                    return res.render("../views/users/user-profile", {
+                        result: user
+                    });
                 });
         },
         unauthorized(req, res) {
@@ -32,7 +26,7 @@ module.exports = function (data) {
             res.status(200)
                 .render("../views/users/register");
         },
-        selectMedia(req, res){
+        selectMedia(req, res) {
             res.status(200)
                 .render("../views/users/select-media");
         }

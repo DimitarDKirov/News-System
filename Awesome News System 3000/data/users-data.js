@@ -16,11 +16,11 @@ module.exports = function (models) {
                 email: user.email,
                 passHash,
                 salt,
-                roles: user.roles || "standard",
+                roles: user.roles || "user",
                 favouriteArticles: user.favouriteArticles || [],
                 selectedMedia: user.selectedMedia || []
             });
-
+            
             return new Promise((resolve, reject) => {
                 newUser.save((err) => {
                     if (err) {

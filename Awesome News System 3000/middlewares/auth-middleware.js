@@ -1,9 +1,10 @@
 'use strict';
 
-function isLoggedIn(req, res, next) {
 
-    if (req.isAuthenticated())
-        return next();
+function isLoggedIn(req, res) {
+    return req.isAuthenticated();
+}
 
-    res.redirect('/');
+module.exports = {
+    isLoggedIn
 }

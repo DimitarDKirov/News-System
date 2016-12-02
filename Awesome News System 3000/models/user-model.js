@@ -22,7 +22,7 @@ let userSchema = new mongoose.Schema({
     },
     roles: {
         type: [String],
-        default: ['standard']
+        default: ['user']
     },
     favouriteArticles: [{
         source: {
