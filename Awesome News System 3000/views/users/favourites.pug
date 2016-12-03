@@ -1,0 +1,25 @@
+extends ../_layout
+
+block app-title
+    | Favourites
+
+block content
+    h1= result.username
+        |`s favourite articles
+    div.col-lg-6
+        each article in result.favouriteArticles
+            div.panel.panel-default
+                div.panel-body
+                    img.img-responsive(src= article.imageUrl, alt="image")
+                    h2
+                        a(href="/article-details/" + article.id)
+                            | #{article.title}
+                div.panel-footer
+                    | published at #{article.publishedAt} by 
+                    a(href="#")
+                        | #{article.source}
+    #pagination
+        block pagination
+
+    #mediaList
+        block media-list

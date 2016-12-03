@@ -41,12 +41,12 @@ module.exports = function(models) {
             return new Promise((resolve, reject) => {
                 dbUser.findOneAndUpdate({ _id: user.id }, {
                     $push: {
-                        favouriteArticles: [{
+                        favouriteArticles: {
                             source: article.source,
                             title: article.title,
                             imageUrl: article.imageUrl,
                             publishedAt: article.publishedAt
-                        }]
+                        }
                     }
                 }, (err, user) => {
                     if (err) {
