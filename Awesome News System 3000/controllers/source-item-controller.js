@@ -34,9 +34,6 @@ module.exports = function (data) {
             console.log(selectedSourceItems);
 
             data.updateUserWithSelectedMedia(userId, selectedSourceItems)
-                // .then(() => {
-                //     data.getAllItems();
-                // })
                 .then(articles => {
                     res.status(200).render("../views/articles/simple-article-list", {
                         result: articles,
