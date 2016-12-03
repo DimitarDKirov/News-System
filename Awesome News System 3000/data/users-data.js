@@ -74,10 +74,10 @@ module.exports = function (models) {
                     }
                     
                     selectedMedia.forEach(media => {
-                        dbUser.selectedMedia.push({ name: media });
+                        dbUser.selectedMedia.push({ name: media});
 
-                        dbUser.save()
                     });
+                        dbUser.save();                    
                     
                 });
                         return resolve();                

@@ -27,15 +27,22 @@ module.exports = function (data) {
         },
         saveSelectedSourceItemsToUser(req, res) {
             let userId = req.session.passport.user;
+            console.log(userId);
             let selectedSourceItems = req.body.selectedMedia;
-  
-           data.updateUserWithSelectedMedia(userId, selectedSourceItems)
-           .then((result) => {
-               res.status(200).render("../views/articles/simple-article-list");
-           })
-           .catch(err => {
+            console.log(selectedSourceItems);
+
+            data.updateUserWithSelectedMedia(userId, selectedSourceItems)
+                // .then(() => {
+                //     data.getAllItems();
+                // })
+                .then(articles => {
+                    res.status(200).render("../views/articles/simple-article-list", {
+                        result: articles
+                    });
+                })
+                .catch(err => {
                     res.send("cannot save selected media");
-                });          
+                });
         },
     }
 }
