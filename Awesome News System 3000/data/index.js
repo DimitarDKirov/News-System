@@ -4,16 +4,17 @@ const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
 
-module.exports = function (config) {
+module.exports = function(config) {
     mongoose.Promise = global.Promise;
     mongoose.connect(config.connectionString);
 
     let simpleArticle = require("../models/simple-article-model");
     let detailedArticle = require("../models/details-article-model");
     let user = require("../models/user-model");
+    let sourceItem = require("../models/source-item-model");
     let comment = require("../models/comment-model");
 
-    let models = { simpleArticle, detailedArticle, user, comment };
+    let models = { simpleArticle, detailedArticle, user, sourceItem, comment };
     let data = {};
 
     fs.readdirSync("./data")
