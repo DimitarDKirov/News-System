@@ -1,8 +1,22 @@
+@font-face {
+    font-family: awesomeNewsFont;
+    src: url("../fonts/oldNewspaper.ttf");
+}
+
+* {
+    font-family: "awesomeNewsFont";
+}
+
+body {
+    background-image: url("../images/awsomeBackground.jpg");
+    background-repeat: repeat;
+}
+
 .glyphicon {
     font-size: 1.2em;
 }
 
-#content{
+#content {
     padding-left: 40px;
 }
 
@@ -14,7 +28,7 @@ h1 {
     font-size: 1.8em;
 }
 
-.thumbnail{
+.thumbnail {
     height: 300px;
     text-align: center;
 }
@@ -24,8 +38,7 @@ h1 {
     vertical-align: middle;
 }
 
-.content{
-
+.content {
     padding: 15px;
 }
 
@@ -40,14 +53,13 @@ h1 {
 }
 
 #footer {
-   position:fixed;
-   left:0px;
-   bottom:0px;
-   height:30px;
-   width:100%;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 30px;
+    width: 100%;
 }
 
 #footer p {
     text-align: right;
 }
-
