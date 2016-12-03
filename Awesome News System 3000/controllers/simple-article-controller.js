@@ -17,7 +17,10 @@ module.exports = function(data) {
             data.getAllItems()
                 .then(selectedMedia => {
                     if (req.isAuthenticated()) {
-                        selectedMedia = req.user.selectedMedia;
+                        selectedMedia = [];
+                        req.user.selectedMedia.forEach(media => {
+                            selectedMedia.push(media.name);
+                        });
                     }
 
                     data.getNewestSimpleArticles(req.query.page, selectedMedia)
