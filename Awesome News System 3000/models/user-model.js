@@ -40,12 +40,7 @@ let userSchema = new mongoose.Schema({
             type: String
         }
     }],
-    selectedMedia: [{
-        name: {
-            type: String,
-            required: true
-        }
-    }]
+    selectedMedia: [String]
 });
 
 mongoose.model("User", userSchema);

@@ -1,5 +1,7 @@
 /* globals require module */
 
+let passport = require("passport");
+
 module.exports = function(data) {
     return {
         getSimpleArticles(req, res) {
@@ -12,14 +14,21 @@ module.exports = function(data) {
                 return;
             }
 
-            data.getNewestSimpleArticles(req.query.page)
-                .then(simpleArticles => {
-                    res.render("../views/articles/pagination", {
-                        result: simpleArticles
-                    });
-                })
-                .catch(err => {
-                    res.render("../views/articles/page-not-found");
+            data.getAllItems()
+                .then(selectedMedia => {
+                    if (req.isAuthenticated()) {
+                        selectedMedia = req.user.selectedMedia;
+                    }
+
+                    data.getNewestSimpleArticles(req.query.page, selectedMedia)
+                        .then(simpleArticles => {
+                            res.render("../views/articles/pagination", {
+                                result: simpleArticles
+                            });
+                        })
+                        .catch(err => {
+                            res.render("../views/articles/page-not-found");
+                        });
                 });
         }
     }

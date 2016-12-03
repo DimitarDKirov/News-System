@@ -3,7 +3,7 @@ extends simple-article-list
 block pagination
     form.navbar-form.navbar-left(role="search" action="/home")
         div.form-group
-        label(name= "totalPages" value= )
+        label(for="page") Total Pages: #{result.totalPages}
         input(type="text" class="form-control" placeholder="Input page number" name="page")
         button.btn.btn-default(type="submit")
             | Go to page
