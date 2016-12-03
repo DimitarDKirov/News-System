@@ -1,7 +1,4 @@
 /* globals module Promise*/
-let HashIds = require("hashids");
-let hashids = new HashIds("AwseomeNewsSystem");
-
 module.exports = function(models) {
     let simpleArticle = models.simpleArticle;
     return {
@@ -16,31 +13,17 @@ module.exports = function(models) {
                         if (page > result.pages) {
                             return reject(page);
                         }
-
-                        let res = [];
-                        result.docs.forEach(function(element) {
-                            let temp = {
-                                id: hashids.encodeHex(element.id),
-                                source: element.source,
-                                title: element.title,
-                                imageUrl: element.imageUrl,
-                                publishedAt: element.publishedAt
-                            };
-                            res.push(temp);
-                        }, this);
-
-                        res.totalPages = result.pages;
-                        return resolve(res);
+                        result.docs.totalPages = result.pages;
+                        return resolve(result.docs);
                     });
             });
         },
         getSimpleArticleById(id) {
             return new Promise((resolve, reject) => {
-                simpleArticle.findOne({ _id: hashids.decodeHex(id) }, (err, article) => {
+                simpleArticle.findOne({ _id: id }, (err, article) => {
                     if (err) {
                         return reject(err);
                     }
-
                     let searchObj = {
                         source: article.source,
                         title: article.title
@@ -56,18 +39,7 @@ module.exports = function(models) {
                     if (err) {
                         return reject(err);
                     }
-                    let res = [];
-                    article.forEach(function(element) {
-                        let temp = {
-                            id: hashids.encodeHex(element.id),
-                            source: element.source,
-                            title: element.title,
-                            imageUrl: element.imageUrl,
-                            publishedAt: element.publishedAt
-                        };
-                        res.push(temp);
-                    }, this);
-                    return resolve(res);
+                    return resolve(article);
                 });
             });
         }

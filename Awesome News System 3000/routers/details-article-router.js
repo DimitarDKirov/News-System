@@ -7,7 +7,8 @@ module.exports = function(app, data) {
     let detailsArticleController = require("../controllers/details-article-controller")(data);
 
     detailedArticleRouter
-        .get("/:id", detailsArticleController.getArticleDetails);
+        .get("/:id", detailsArticleController.getArticleDetails)
+        .post("/:id", detailsArticleController.addArticleToFavorites);
 
     app.use("/article-details", detailedArticleRouter);
 }

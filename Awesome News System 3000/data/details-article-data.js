@@ -1,7 +1,8 @@
 /* globals module Promise*/
 
-module.exports = function (models) {
+module.exports = function(models) {
     let detailedArticle = models.detailedArticle;
+    let dbUser = models.user;
 
     return {
         getArticleDetailsBySourceAndTitle(article) {
@@ -11,6 +12,16 @@ module.exports = function (models) {
                         return reject(err);
                     }
 
+                    return resolve(article);
+                });
+            });
+        },
+        getDetailedArticleById(id) {
+            return new Promise((resolve, reject) => {
+                detailedArticle.findOne({ _id: id }, (err, article) => {
+                    if (err) {
+                        return reject(err);
+                    }
                     return resolve(article);
                 });
             });
@@ -25,6 +36,25 @@ module.exports = function (models) {
                     return resolve(doc);
                 })
             })
+        },
+        addArticleToUserFavorites(user, article) {
+            return new Promise((resolve, reject) => {
+                dbUser.findOneAndUpdate({ _id: user.id }, {
+                    $push: {
+                        favouriteArticles: [{
+                            source: article.source,
+                            title: article.title,
+                            imageUrl: article.imageUrl,
+                            publishedAt: article.publishedAt
+                        }]
+                    }
+                }, (err, user) => {
+                    if (err) {
+                        return reject(err);
+                    }
+                    return resolve(user);
+                })
+            });
         }
     }
 }

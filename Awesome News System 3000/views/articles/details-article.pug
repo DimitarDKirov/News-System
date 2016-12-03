@@ -16,11 +16,12 @@ block content
                 br
                 a.see-more(href=result.url)
                     | See more
-
-        a.btn.btn-success(href="#")
-            | Add to Favourite Articles
         
         if user
+            form(method="POST" action="/article-details/"+result._id)
+                button.btn.btn-success
+                    | Add to Favourite Articles
+        
             div.panel.panel-default
                 div.panel-heading
                     div.panel-title
