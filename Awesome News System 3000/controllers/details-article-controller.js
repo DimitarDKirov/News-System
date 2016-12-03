@@ -20,7 +20,7 @@ module.exports = function(data) {
         addArticleToFavorites(req, res) {
             data.getDetailedArticleById(req.params.id)
                 .then(article => {
-                    data.addArticleToUserFavorites(req.user, article)
+                    data.addArticleToUserFavorites(req.user, article, req.params.id)
                         .then(() => {
                             res.redirect("/");
                         })
