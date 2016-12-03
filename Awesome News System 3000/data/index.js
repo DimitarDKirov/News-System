@@ -12,8 +12,14 @@ module.exports = function (config) {
     let detailedArticle = require("../models/details-article-model");
     let user = require("../models/user-model");
     let sourceItem = require("../models/source-item-model");
+<<<<<<< HEAD
 
     let models = { simpleArticle, detailedArticle, user, sourceItem };
+=======
+    let comment = require("../models/comment-model");
+
+    let models = { simpleArticle, detailedArticle, user, sourceItem, comment };
+>>>>>>> a1cd692949162ba2c84fb79d15306b7e15262d47
     let data = {};
 
     fs.readdirSync("./data")

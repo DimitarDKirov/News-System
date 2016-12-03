@@ -1,6 +1,6 @@
 /* globals module Promise*/
 
-module.exports = function(models) {
+module.exports = function (models) {
     let detailedArticle = models.detailedArticle;
 
     return {
@@ -14,6 +14,17 @@ module.exports = function(models) {
                     return resolve(article);
                 });
             });
+        },
+        addCommentByArticle(articleId, comment) {
+            return new Promise((resolve, reject) => {
+                detailedArticle.findOneAndUpdate({ _id: articleId }, { $push: { comments: comment } }, { new: true }, (err, doc) => {
+                    if (err) {
+                        return reject(err);
+                    }
+
+                    return resolve(doc);
+                })
+            })
         }
     }
 }
