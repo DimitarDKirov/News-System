@@ -11,7 +11,8 @@ module.exports = function(data) {
                         .then(articleDetails => {
                             //console.log(req.isAuthenticated());
                             res.render("../views/articles/details-article", {
-                                result: articleDetails
+                                result: articleDetails,
+                                user: req.user
                             });
                         });
                 });

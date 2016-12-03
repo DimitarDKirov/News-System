@@ -19,17 +19,24 @@ block content
 
         a.btn.btn-success(href="#")
             | Add to Favourite Articles
+        
+        if user
+            div.panel.panel-default
+                div.panel-heading
+                    div.panel-title
+                    | Comments
+                div.panel-body
+                    form(method="POST" action="/comment?articleId="+result._id)
+                        div.form-group
+                            textarea.form-control(rows="3" name="commentContent")
+                        button.btn.btn-default(type="submit")
+                            | Submit
 
-        div.panel.panel-default
-            a.btn.btn-default(href="#")
-                | Add Comment
-
-            //- if result.comments
-            //-     each comment in result.comments
-            //-         li
-            //-             div
-            //-                 | comment.content
-                        
-            //-                 a(href="#")
-            //-                     | By comment.author
-            //-                 | posted on comment.date
+                    each comment in result.comments
+                        hr
+                        div= comment.content
+                        p
+                        | by 
+                        a(href="/#")= comment.author?comment.author:'Anonymous'
+                        |  on  
+                        = new Date(comment.date).toLocaleString()
