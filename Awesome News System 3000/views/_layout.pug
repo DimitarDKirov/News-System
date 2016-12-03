@@ -12,7 +12,6 @@ head
     link(rel="stylesheet", href="https://bootswatch.com/readable/bootstrap.min.css")
     link(rel="stylesheet", href="/static/styles/main.css")
     link(rel="stylesheet", href="/static/bower_components/toastr/toastr.css")
-  
 
 body
     nav.navbar.navbar-default
@@ -50,6 +49,9 @@ body
 
             ul.nav.navbar-nav.navbar-right
                 if user
+                    li
+                        a(href="/user/profile")
+                            = user.username
                     li.dropdown
                         a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-expanded="false")
                                 span.glyphicon.glyphicon-menu-hamburger
