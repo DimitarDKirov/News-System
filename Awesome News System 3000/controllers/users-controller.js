@@ -28,7 +28,7 @@ module.exports = function (data) {
         },
         selectMedia(req, res) {
             res.status(200)
-                .render("../views/users/select-media");
+                .render("../views/sources/select-media");
         }
     }
 }

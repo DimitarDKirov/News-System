@@ -2,8 +2,16 @@
     font-size: 1.2em;
 }
 
+#content{
+    padding-left: 40px;
+}
+
 .awesomeLogo {
     margin: 15px;
+}
+
+h1 {
+    font-size: 1.8em;
 }
 
 .thumbnail{
@@ -16,8 +24,9 @@
     vertical-align: middle;
 }
 
-h1 {
-    font-size: 1.8em;
+.content{
+
+    padding: 15px;
 }
 
 #footer {

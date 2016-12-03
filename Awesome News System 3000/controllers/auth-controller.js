@@ -44,6 +44,12 @@ module.exports = function (data) {
 
             data.createNewUser(user)
                 .then(dbUser => {
+                    req.login(dbUser, error => {
+                    if (error) {
+                        next(error);
+                        return;
+                    }});
+
                     res.render("../views/users/user-profile", {
                         result: dbUser
                     })

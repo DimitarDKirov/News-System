@@ -10,7 +10,7 @@ module.exports = function (app, data) {
     sourcesRouter
         .get("/list", sourceController.getAllSources)
         .get("/select-media", sourceController.getAllSources)
-        .post("/select-media", sourceController.saveSelectedSourceIremsToUser);
+        .post("/select-media", sourceController.saveSelectedSourceItemsToUser);
 
     app.use("/sources", sourcesRouter);
 }

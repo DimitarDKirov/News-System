@@ -20,7 +20,7 @@ module.exports = function (models) {
                 favouriteArticles: user.favouriteArticles || [],
                 selectedMedia: user.selectedMedia || []
             });
-            
+
             return new Promise((resolve, reject) => {
                 newUser.save((err) => {
                     if (err) {
@@ -64,6 +64,23 @@ module.exports = function (models) {
 
                     return resolve(users);
                 });
+            });
+        },
+        updateUserWithSelectedMedia(userId, selectedMedia) {
+            return new Promise((resolve, reject) => {
+                User.findOne({ _id: userId }, (err, dbUser) => {
+                    if (err) {
+                        return reject(err);
+                    }
+                    
+                    selectedMedia.forEach(media => {
+                        dbUser.selectedMedia.push({ name: media });
+
+                        dbUser.save()
+                    });
+                    
+                });
+                        return resolve();                
             });
         }
     }

@@ -15,7 +15,6 @@ module.exports = function(app, data) {
         .get("/register", usersController.register)
         .post("/register", authController.register)
         .get("/profile", usersController.profile)
-        .get("/select-media", usersController.selectMedia)
         .get("/logout", authController.logout)
         .get("/unauthorized", usersController.unauthorized);
 

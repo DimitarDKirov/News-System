@@ -25,11 +25,17 @@ module.exports = function (data) {
                     res.render("../views/articles/page-not-found");
                 });
         },
-        saveSelectedSourceIremsToUser(req, res) {
-            let selectedSourceItems = req.body;
-            console.log(selectedSourceItems);
-
-            
+        saveSelectedSourceItemsToUser(req, res) {
+            let userId = req.session.passport.user;
+            let selectedSourceItems = req.body.selectedMedia;
+  
+           data.updateUserWithSelectedMedia(userId, selectedSourceItems)
+           .then((result) => {
+               res.status(200).render("../views/articles/simple-article-list");
+           })
+           .catch(err => {
+                    res.send("cannot save selected media");
+                });          
         },
     }
 }
