@@ -15,7 +15,7 @@ block content
                             div.thumbnail
                                 a(href= source.url)
                                     img.img-responsive(src= source.urlsToLogos.small alt="source-logo")
-                            input.checkbox-input(type="checkbox", name=`selectedMedia`, value=source.name, id=`select-media-${source.id}`)
+                            input.checkbox-input(type="checkbox", name=`selectedMedia`, value=source.id, id=`select-media-${source.id}`)
                             label(for=`select-media-${source.id}`)= source.name
                         
             div.form-group

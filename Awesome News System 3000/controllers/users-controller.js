@@ -32,11 +32,14 @@ module.exports = function(data) {
         },
         selectMedia(req, res) {
             res.status(200)
-                .render("../views/sources/select-media");
+                .render("../views/sources/select-media"), {
+                    result: req.user
+                };
         },
         getUserFavouriteArticles(req, res) {
             res.render("../views/users/favourites", {
-                result: req.user
+                result: req.user,
+                user: req.user
             })
         }
     }
