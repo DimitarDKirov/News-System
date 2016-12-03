@@ -1,10 +1,8 @@
 extends ../_layout
-
 block app-title
-    | #{result.username} Profile 
-
+    |#{result.username}`s profile
 block content
-    h2 Hello, #{result.username}! 
+    h2= result.username + " "
         | It's nice to see you back! We were exprecting you.
 
     div.panel.panel-default
