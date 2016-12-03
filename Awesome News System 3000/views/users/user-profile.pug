@@ -2,15 +2,26 @@ extends ../_layout
 block app-title
     |#{result.username}`s profile
 block content
-    h2= result.username + " "
-        | It's nice to see you back! We were exprecting you.
 
-    div.panel.panel-default
-        a.btn.btn-default(href="/user/favourites")
-            | View Favourite Articles 
-        br
-        a.btn.btn-default(href="/sources/select-media")
-            | Select Media
+    div.col-lg-10
+        div.jumbotron
+            h2
+                | Welcome, #{result.username}
+            p 
+                | It's nice to see you back! We were exprecting you.
+
+        div.col-lg-12
+            div.panel.panel-default.col-lg-5.profile-select
+                p 
+                    | Check your favourites. It's easy to read them later. 
+                a.btn-primary.btn-lg(href="/user/favourites")
+                    | View Favourite Articles 
+
+            div.panel.panel-default.col-lg-5.profile-select
+                p
+                    | Choose the media you'd like to follow to get the latest news from them every day.
+                a.btn-primary.btn-lg(href="/sources/select-media")
+                    | Select Media
         //- br
         //- a.btn.btn-default(href="/user/select-media")
         //-     | Select Media by Country

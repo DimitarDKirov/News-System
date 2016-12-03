@@ -1,8 +1,18 @@
 extends ../_layout
 
-block content
-    h2 We are sorry, but you are not authorised to login.
-        | Please, try again to login in with your name and password.
+block app-title 
+    | Unauthorized 
 
-    a.btn.btn-default(href="/user/login")
-        | Login
+block content
+
+    div.panel.panel-default
+        h2 We are sorry, but you are not authorised to login.
+            | Please, try again to login in with your name and password.
+
+        a.btn.btn-warning(href="/user/login")
+            | Login
+
+        h2 Or register to receive awesome news every day
+
+        a.btn.btn-warning(href="/user/register")
+            | Register
