@@ -5,6 +5,7 @@
     const EmailRegex = /^[a-zA-Z0-9._%+-]+@(?:[a-z0-9-]+\.)+[a-z]{2,}$/;
 
     $('#authenticate').submit(function (event) {
+        toastr.remove();
         let username = $('#username').val();
         if (!UsernameRegex.test(username)) {
             toastr.error('Username must contain between 3 and 30 letters or digits');

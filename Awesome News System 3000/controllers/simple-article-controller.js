@@ -17,7 +17,7 @@ module.exports = function(data) {
             data.getAllItems()
                 .then(selectedMedia => {
                     if (req.isAuthenticated()) {
-                        selectedMedia = [];
+                       // selectedMedia = [];
                         req.user.selectedMedia.forEach(media => {
                             selectedMedia.push(media.name);
                         });
