@@ -37,7 +37,7 @@ module.exports = function(models) {
                 })
             })
         },
-        addArticleToUserFavorites(user, article) {
+        addArticleToUserFavorites(user, article, originaId) {
             return new Promise((resolve, reject) => {
                 dbUser.findOneAndUpdate({ _id: user.id }, {
                     $push: {
@@ -45,7 +45,8 @@ module.exports = function(models) {
                             source: article.source,
                             title: article.title,
                             imageUrl: article.imageUrl,
-                            publishedAt: article.publishedAt
+                            publishedAt: article.publishedAt,
+                            originalId: originaId
                         }
                     }
                 }, (err, user) => {

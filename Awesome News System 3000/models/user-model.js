@@ -38,6 +38,9 @@ let userSchema = new mongoose.Schema({
         },
         publishedAt: {
             type: String
+        },
+        originalId: {
+            type: String
         }
     }],
     selectedMedia: [{

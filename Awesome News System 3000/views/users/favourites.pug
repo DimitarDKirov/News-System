@@ -12,7 +12,7 @@ block content
                 div.panel-body
                     img.img-responsive(src= article.imageUrl, alt="image")
                     h2
-                        a(href="/article-details/" + article.id)
+                        a(href="/article-details/" + article.originalId)
                             | #{article.title}
                 div.panel-footer
                     | published at #{article.publishedAt} by 
