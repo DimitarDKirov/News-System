@@ -12,7 +12,7 @@ head
     link(rel="stylesheet", href="https://bootswatch.com/readable/bootstrap.min.css")
     link(rel="stylesheet", href="/static/styles/main.css")
     link(rel="stylesheet", href="/static/bower_components/toastr/toastr.css")
-    
+  
 
 body
     nav.navbar.navbar-default
@@ -49,31 +49,32 @@ body
                     | Submit
 
             ul.nav.navbar-nav.navbar-right
-                li.dropdown
-                    a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-expanded="false")
-                            span.glyphicon.glyphicon-menu-hamburger
-                                span.glyphicon-class
-                    if user
-                    ul.dropdown-menu(role="menu")
-                        li
-                            a(href="/user/profile")
-                                | My Profile
-                        li
-                            a(href="/sources/select-media")
-                                | Select Media
+                if user
+                    li.dropdown
+                        a.dropdown-toggle(href="#" data-toggle="dropdown" role="button" aria-expanded="false")
+                                span.glyphicon.glyphicon-menu-hamburger
+                                    span.glyphicon-class
+                    
+                        ul.dropdown-menu(role="menu")
+                            li
+                                a(href="/user/profile")
+                                    | My Profile
+                            li
+                                a(href="/sources/select-media")
+                                    | Select Media
 
-                        li.divider
-                        
-                        li
-                            a(href="/user/logout")
-                                | Logout
-                if !user 
-                li
-                    a(href="/user/login")
-                        | Login
-                li
-                    a(href="/user/register")
-                        | Register
+                            li.divider
+                            
+                            li
+                                a(href="/user/logout")
+                                    | Logout
+                else
+                    li
+                        a(href="/user/login")
+                            | Login
+                    li
+                        a(href="/user/register")
+                            | Register
 
     
     #content
