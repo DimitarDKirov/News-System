@@ -10,12 +10,15 @@ block content
         h2 
             | by #{result.author}
     
-        div.panel.panel-default
-            p 
-                | #{result.description}
-                br
-                a.see-more(href=result.url)
-                    | See more
+        div.panel.panel-default.col-lg-12.content
+            div.col-lg-6
+                img.img-responsive(src= result.imageUrl, alt="article-image" width="400px")
+            div.panel.panel-default.col-lg-6
+                p 
+                    | #{result.description}
+                    br
+                    a.see-more(href=result.url)
+                        | See more
         
         if user
             form(method="POST" action="/article-details/"+result._id)
