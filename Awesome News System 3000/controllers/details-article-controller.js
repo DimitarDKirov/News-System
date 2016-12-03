@@ -16,6 +16,15 @@ module.exports = function(data) {
                             });
                         });
                 });
+        },
+        addArticleToFavorites(req, res) {
+            data.getDetailedArticleById(req.params.id)
+                .then(article => {
+                    data.addArticleToUserFavorites(req.user, article)
+                        .then(() => {
+                            res.redirect("/");
+                        })
+                })
         }
     }
 };

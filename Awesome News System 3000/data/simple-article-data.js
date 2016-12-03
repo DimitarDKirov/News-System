@@ -24,7 +24,6 @@ module.exports = function(models) {
                     if (err) {
                         return reject(err);
                     }
-
                     let searchObj = {
                         source: article.source,
                         title: article.title
