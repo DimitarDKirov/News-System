@@ -24,7 +24,8 @@ module.exports = function (data) {
 
                     let user = req.user;
                     res.status(200).render("../views/users/user-profile", {
-                        result: user
+                        result: user,
+                        user: req.user
                     });
                 });
             });

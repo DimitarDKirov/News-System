@@ -10,12 +10,14 @@ module.exports = function (data) {
                 .then(sourceItems => {
                     if (req.isAuthenticated()) {
                         res.render("../views/sources/select-media", {
-                            result: sourceItems
+                            result: sourceItems,
+                            user: req.user
                         });
                     }
                     else {
                         res.render("../views/sources/sources-list", {
-                            result: sourceItems
+                            result: sourceItems,
+                            user: req.user
                         });
                     }
 
@@ -37,7 +39,8 @@ module.exports = function (data) {
                 // })
                 .then(articles => {
                     res.status(200).render("../views/articles/simple-article-list", {
-                        result: articles
+                        result: articles,
+                        user: req.user
                     });
                 })
                 .catch(err => {

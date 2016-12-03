@@ -6,7 +6,8 @@ module.exports = function(data) {
             data.getSimpleArticleByName(req.query.search)
                 .then(article => {
                     res.render("../views/articles/simple-article-list", {
-                        result: article
+                        result: article,
+                        user: req.user
                     });
                 })
         }

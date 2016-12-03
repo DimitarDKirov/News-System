@@ -18,7 +18,8 @@ module.exports = function(data) {
                 });
             } else {
                 return res.render("../views/users/user-profile", {
-                    result: req.user
+                    result: req.user,
+                    user: req.user
                 });
             }
         },

@@ -26,7 +26,8 @@ module.exports = function(data) {
                     data.getNewestSimpleArticles(req.query.page, selectedMedia)
                         .then(simpleArticles => {
                             res.render("../views/articles/pagination", {
-                                result: simpleArticles
+                                result: simpleArticles,
+                                user: req.user
                             });
                         })
                         .catch(err => {
