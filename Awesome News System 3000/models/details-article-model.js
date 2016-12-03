@@ -21,8 +21,7 @@ let detailedArticleSchema = new mongoose.Schema({
         type: String
     },
     description: {
-        type: String,
-        required: true
+        type: String
     },
     url: {
         type: String,

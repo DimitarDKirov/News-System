@@ -5,31 +5,33 @@ let hashids = new HashIds("AwseomeNewsSystem");
 module.exports = function(models) {
     let simpleArticle = models.simpleArticle;
     return {
-        getNewestSimpleArticles(page) {
+        getNewestSimpleArticles(page, selectedMedia) {
             return new Promise((resolve, reject) => {
-                simpleArticle.paginate({}, { page: page, limit: 10, sort: { publishedAt: -1 } }, function(err, result) {
-                    if (err) {
-                        return reject(err);
-                    }
+                simpleArticle.paginate({ source: { $in: selectedMedia } }, { page: page, limit: 10, sort: { publishedAt: -1 } },
+                    function(err, result) {
+                        if (err) {
+                            return reject(err);
+                        }
 
-                    if (page > result.total) {
-                        return reject(page);
-                    }
+                        if (page > result.pages) {
+                            return reject(page);
+                        }
 
-                    let res = [];
-                    result.docs.forEach(function(element) {
-                        let temp = {
-                            id: hashids.encodeHex(element.id),
-                            source: element.source,
-                            title: element.title,
-                            imageUrl: element.imageUrl,
-                            publishedAt: element.publishedAt
-                        };
-                        res.push(temp);
-                    }, this);
+                        let res = [];
+                        result.docs.forEach(function(element) {
+                            let temp = {
+                                id: hashids.encodeHex(element.id),
+                                source: element.source,
+                                title: element.title,
+                                imageUrl: element.imageUrl,
+                                publishedAt: element.publishedAt
+                            };
+                            res.push(temp);
+                        }, this);
 
-                    return resolve(res);
-                });
+                        res.totalPages = result.pages;
+                        return resolve(res);
+                    });
             });
         },
         getSimpleArticleById(id) {
