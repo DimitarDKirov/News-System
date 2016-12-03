@@ -2,7 +2,7 @@
 
 const hashing = require('../utils/hashing');
 
-module.exports = function (models) {
+module.exports = function(models) {
 
     let User = models.user;
 
@@ -72,15 +72,16 @@ module.exports = function (models) {
                     if (err) {
                         return reject(err);
                     }
-                    
-                    selectedMedia.forEach(media => {
-                        dbUser.selectedMedia.push({ name: media});
 
+                    dbUser.selectedMedia = [];
+
+                    selectedMedia.forEach(media => {
+                        dbUser.selectedMedia.push({ name: media });
                     });
-                        dbUser.save();                    
-                    
+
+                    dbUser.save();
                 });
-                        return resolve();                
+                return resolve();
             });
         }
     }

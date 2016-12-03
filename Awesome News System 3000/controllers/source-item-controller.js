@@ -2,7 +2,7 @@
 
 const passport = require("passport");
 
-module.exports = function (data) {
+module.exports = function(data) {
     return {
         getAllSources(req, res) {
 
@@ -13,8 +13,7 @@ module.exports = function (data) {
                             result: sourceItems,
                             user: req.user
                         });
-                    }
-                    else {
+                    } else {
                         res.render("../views/sources/sources-list", {
                             result: sourceItems,
                             user: req.user
@@ -28,10 +27,10 @@ module.exports = function (data) {
                 });
         },
         saveSelectedSourceItemsToUser(req, res) {
-            let userId = req.session.passport.user;            
+            let userId = req.session.passport.user;
             let selectedSourceItems = req.body.selectedMedia;
-           
-            if(!Array.isArray(selectedSourceItems)){
+
+            if (!Array.isArray(selectedSourceItems)) {
                 selectedSourceItems = [selectedSourceItems];
             }
 

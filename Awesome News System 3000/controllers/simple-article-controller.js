@@ -14,10 +14,10 @@ module.exports = function(data) {
                 return;
             }
 
-            data.getAllItems()
+            data.getAllSourceItemsIds()
                 .then(selectedMedia => {
                     if (req.isAuthenticated()) {
-                       // selectedMedia = [];
+                        selectedMedia = [];
                         req.user.selectedMedia.forEach(media => {
                             selectedMedia.push(media.name);
                         });
