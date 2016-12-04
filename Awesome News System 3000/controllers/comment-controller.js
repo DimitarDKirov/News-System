@@ -1,21 +1,17 @@
 /* globals require module */
 
-const passport = require("passport");
-
 module.exports = function (data) {
     return {
         getComments(req, res) {
-            // let articleId = req.params.id
-            // data.getCommentsByArticle(articleId)
-            //     .then(result => {
-            //         data.getArticleDetailsBySourceAndTitle(result)
-            //             .then(articleDetails => {
-            //                 //console.log(req.isAuthenticated());
-            //                 res.render("../views/articles/details-article", {
-            //                     result: articleDetails
-            //                 });
-            //             });
-            //     });
+            const articleId = req.query.articleId;
+            data.getDetailedArticleById(articleId)
+                .then(article => {
+                    res.status(200).send(article.comments);
+                })
+                .catch(() => {
+                    res.status(404).send("Can not get comments");
+                })
+
         },
         createComment(req, res) {
             if (!req.isAuthenticated()) {
@@ -26,7 +22,7 @@ module.exports = function (data) {
             if (commentContent === undefined || commentContent.length === 0) {
                 return res.status(400).send("Comment can not be empty");
             }
-            
+
             const username = req.user.toObject().username;
             const newComment = {
                 author: username,
@@ -34,14 +30,14 @@ module.exports = function (data) {
                 date: new Date()
             };
 
-            const articleId = req.query.articleId;
+            const articleId = req.body.articleId;
 
             data.addComment(null, newComment)
-                .then((comment) => {
+                .then(() => {
                     return data.addCommentByArticle(articleId, newComment);
                 })
                 .then(article => {
-                    return res.status(201).redirect(req.get('referer'));
+                    return res.status(201).send(JSON.stringify(article.comments));
                 })
                 .catch(err => {
                     return res.status(400).send(err);
