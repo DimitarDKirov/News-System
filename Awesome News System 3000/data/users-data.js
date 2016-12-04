@@ -6,7 +6,7 @@ const USERNAME_MAX_LENGTH = 30;
 const PASSWORD_MIN_LENGTH = 5;
 const PASSWORD_MAX_LENGTH = 30;
 
-module.exports = function (models) {
+module.exports = function(models) {
     let User = models.user;
 
     return {
@@ -33,7 +33,7 @@ module.exports = function (models) {
             });
 
             return new Promise((resolve, reject) => {
-                newUser.save((err) => {
+                newUser.save(err => {
                     if (err) {
                         return reject(err);
                     }

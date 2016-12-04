@@ -62,10 +62,6 @@ module.exports = {
         "key-spacing": "off",
         "keyword-spacing": "off",
         "line-comment-position": "off",
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
         "lines-around-comment": "off",
         "lines-around-directive": "off",
         "max-depth": "off",
