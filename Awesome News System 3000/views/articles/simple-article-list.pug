@@ -5,19 +5,9 @@ block app-title
 
 block content
     h1 Latest Awesome News
-
-    div.col-lg-6
-        each article in result
-            div.panel.panel-default
-                div.panel-body
-                    img.img-responsive(src= article.imageUrl, alt="image")
-                    h2
-                        a(href="/article-details/" + article.id)
-                            | #{article.title}
-                div.panel-footer
-                    | published at #{article.publishedAt} by 
-                    a(href="#")
-                        | #{article.source}
+    #articles(page="1")
+        include simple-articles.pug
+   
     #pagination
         block pagination
 
