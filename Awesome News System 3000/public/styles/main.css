@@ -55,13 +55,9 @@ h1 {
 }
 
 .media-save-btn{
-    margin: 30px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    padding-left: 150px;
-    padding-right: 150px;
-    position: absolute;
-    left: 38%;
+    position: relative;
+    left: 40%;
+    width: 35%;
 }
 
 footer {
@@ -69,8 +65,6 @@ footer {
     bottom: 0px;
     width: 100%;
 }
-footer p {   
-    margin-top: 70px;
-    padding-bottom: 30px;
+footer p { 
     color: darkslategray;
 }

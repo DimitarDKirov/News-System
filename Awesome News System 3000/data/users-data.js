@@ -1,13 +1,24 @@
 'use strict';
 
 const hashing = require('../utils/hashing');
+const USERNAME_MIN_LENGTH = 3;
+const USERNAME_MAX_LENGTH = 30;
+const PASSWORD_MIN_LENGTH = 5;
+const PASSWORD_MAX_LENGTH = 30;
 
-module.exports = function(models) {
-
+module.exports = function (models) {
     let User = models.user;
 
     return {
         createNewUser(user) {
+            if (user.username.length < USERNAME_MIN_LENGTH || user.username.length > USERNAME_MAX_LENGTH) {
+                return Promise.reject({ reason: `Username must be between ${USERNAME_MIN_LENGTH} and ${USERNAME_MAX_LENGTH} characters long` });
+            }
+
+            if (user.password.length < PASSWORD_MIN_LENGTH || user.password.length > PASSWORD_MAX_LENGTH) {
+                return Promise.reject({ reason: `Password must be between ${PASSWORD_MIN_LENGTH} and ${PASSWORD_MAX_LENGTH} characters long` });
+            }
+
             const salt = hashing.generateSalt();
             const passHash = hashing.hashPassword(salt, user.password);
 
@@ -37,7 +48,7 @@ module.exports = function(models) {
                     _id: id
                 }, (err, user) => {
                     if (err) {
-                        return reject(err);
+                        return reject(err || null);
                     }
 
                     return resolve(user);
