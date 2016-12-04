@@ -1,102 +1,59 @@
-# News-System
-## Course Project for Web Applications with Node.js course at Telerik Academy
+# Awesome News System 3000
 
-#Requirements
+## Project aim
+The aim of the project is to give our users the latest news from many sources as soon as they are published. Users can filter the media they prefer and receive information from the sources they prefer.
 
-This document describes the **course project assignment** for the [Web applications with Node.js course](telerikacademy.com/courses/courses/Details/400) at Telerik Academy.
+## Project information
+The project consists of two parts - server and requester which run in parallel. The requester makes regular requests to newsapi.org and updates our database. At the same time the server provides the services to our users.
 
-## Project Description
+Also available on [https://awesomenews3000.herokuapp.com](https://awesomenews3000.herokuapp.com)
 
-Design and implement a **Standard Web application** using [Node.js](http://nodejs.org), [Express](expressjs.com) and [MongoDB](https://www.mongodb.com/).  
+## Users
+#### Normal access 
+#### Registered - options to leave a comment, like the article and read it later and filter articles by source
 
-It can be a discussion forum, blog system, e-commerce site, online gaming site, social network, or any other web application by your choice.
+## Routes
+#### Normal access
+/home -> every user regardless if they are registered or not can view the latest news from all our sources in convenient form;
 
-The application should have a:
+/article-details -> displays detailed information about the given article. If user is logged in, he/she has the option to add the article to their favourite articles and to comment them
 
-- **public part** (accessible without authentication)
-- **private part** (available for registered users)
+/search -> displays the results of the search query based on the user input
 
-### Public Part
+/about -> displays information about the creators
 
-The **public part** of your projects should be **visible without authentication**.
-This public part could be the application start page, application statistics, the user login and user registration forms, as well as the public data of the users, e.g. the blog posts in a blog system, the public offers in a bid system, the products in an e-commerce system, etc.
+#### Registered users
+/user/profile -> displays user profile
 
-### Private Part (Registered users area)
+/user/favourite-articles -> displays the articles the user has liked
 
-**Registered users** should have personal area in the web application accessible after **successful login**.
-This area could hold for example the user's profiles management functionality, the user's offers in a bid system, the user's posts in a blog system, the user's photos in a photo sharing system, the user's contacts in a social network, etc.
+/user/select-media -> gives the ability to filter the displayed information about media source
 
-## Technical Requirements
+## Team Members 
+#### [Milena Stancheva](https://github.com/MilStancheva)
+#### [Bozhidar Boevski](https://github.com/kjifw)
+#### [Martin Jordanov](https://github.com/mkjordanov)
+#### [Dimitar Kirov](https://github.com/DimitarDKirov)
 
-Your Web application should use the following technologies, frameworks and development techniques:
+## Project Dependencies
+#### [News API](https://newsapi.org)
+#### Node
+#### Express
+#### Pug
+#### Mongodb
+#### Mongoose
+#### Passport
+#### Request
+#### Mongoose-paginate
+#### Bootstrap
+#### Crypto
+#### Toastr
+#### Eslint
+#### Typings
 
-### Application Back-end (Server)
-
-- At least **5 different public dynamic web pages**
-  - Using [Pug](https://pugjs.org/)
-- At least **3 different private (authenticated) dynamic web pages**
-  - Using [Pug](https://pugjs.org/)
-- At least **5 different public RESTful routes** for AJAX
-- At least **1 private (authenticated) route** for AJAX
-- Use **Express** for the server
-  - Use an **MV-*** pattern
-- Use **MongoDB**
-  - As data storage
-  - Optionally, you may use **Mongoose** or any other ODM framework
-- Create a data/service layer for accessing the database
-- Use [Passport](http://passportjs.org/) - for managing **users**
-  - Your registered users should have at least one of the two roles: **user**
-
-### Application front-end (client)
-
-- Use any framework of your choice for the front-end
-  - Optional, not required
-  - KendoUI, AngularJS, Angular 2, Knockout, Bootstrap, etc...
-- implement responsive design
-  - It may be based on **Bootstrap**, **Materialize** or any other UI framework
-- Use at least **one AJAX form and/or WebSockets communication**
-- Write at least **10 different unit tests** for your controllers and data logic
-- Apply **error handling** and **data validation** to avoid crashes when invalid data is entered
-- Prevent yourself from **security** holes (XSS, XSRF, Parameter Tampering, etc.)
-  - Handle correctly the **special HTML characters** and tags like `<script>`, `<br />`, etc.
-
-##  General Requirements
-
-- Use Git
-  - Github, Gitlab, Bitbucket, or other
-- Brief **documentation** of the project and the project architecture
-  - As `README.md` file at the root of the github repository
-
-### Optional Requirements
-
-- Nice looking UI supporting of all modern and old Web browsers
-- Good usability (easy to use UI)
-- Record a short video showcasing your application
-  - ~1-2 minutes, just show the interesting features
-  - Do not record register/login functionality, this is not interesting...
-
-### Deliverables
-
-- Upload your application in the cloud
-  - MS Azure, HerokuCloud, Amazon, all are fine
-- Register your application at [Our Showcase System](http://best.telerikacademy.com)
-  - Link to the live application
-  - Link to the video
-  - Link to the github repository
-
-### Public Project Defense
-
-Each team will have to make a **public defense** of its work in front of a trainer (for about 30 minutes), in which each of the team members will answer to the trainer's questions individually.
-
-The public defense includes:
-
-- Live **demonstration** of the developed web application (prepare sample data).
-- Explain application structure and its back-end and front-end **source code**
-- Show the **commit logs** in the source control repository to prove a contribution from all team members.
-- May include a simple task for each team member
-  - The task must be implemented immediately
-
-### Give Feedback about Your Teammates
-
-You will be invited to **provide feedback** about all your teammates, their attitude to this project, their technical skills, their team working skills, their contribution to the project, etc.
-The feedback is important part of the project evaluation so **take it seriously** and be honest.
+## How to use locally
+* Clone or download
+* Register free at [News API](https://newsapi.org) to get a key and insert it in the config file
+* Run ```npm install``` in the root directory
+* Run ```npm start``` to start the project locally
+* Connect to localhost:3001 to see the magic at work :)
