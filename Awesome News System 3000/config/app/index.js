@@ -1,6 +1,12 @@
 /* globals module */
 
+let connectionStrings = {
+    production: process.env.CONNECTION_STRING,
+    development: "mongodb://localhost/newsSystemDb"
+}
+
 module.exports = {
-    port: 3001,
-    connectionString: "mongodb://localhost/newsSystemDb"
+    environment: process.env.NODE_ENV || "development",
+    connectionString: connectionStrings[process.env.NODE_ENV || "development"],
+    port: process.env.PORT || 3001    
 };
