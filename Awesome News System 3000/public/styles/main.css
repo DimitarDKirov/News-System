@@ -17,7 +17,8 @@ body {
 }
 
 #content {
-    padding-left: 40px;
+    padding-left: 30px;
+    padding-bottom: 30px;
 }
 
 .awesomeLogo {
@@ -52,14 +53,12 @@ h1 {
     padding: 15px;
 }
 
-#footer {
+footer {
     position: fixed;
     left: 0px;
     bottom: 0px;
-    height: 30px;
     width: 100%;
 }
-
-#footer p {
-    text-align: right;
+footer p {
+    color: darkslategray;
 }

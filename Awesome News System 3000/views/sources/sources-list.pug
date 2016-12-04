@@ -5,11 +5,11 @@ block app-title
 
 block content
     h1 Awesome Sources    
-    div.list-group-item
-        each source in result
-            div.col-sm-6.col-md-4
-                div.thumbnail
-                    a(href= source.url)
-                        img.img-responsive(src= source.urlsToLogos.small alt="source-logo")
+    
+    each source in result
+        div.col-sm-6.col-md-4
+            div.thumbnail
+                a(href= source.url)
+                    img.img-responsive(src= source.urlsToLogos.small alt="source-logo")
                     
 
