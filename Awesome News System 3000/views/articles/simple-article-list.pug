@@ -5,11 +5,12 @@ block app-title
 
 block content
     h1 Latest Awesome News
-    #articles(page="1")
-        include simple-articles.pug
+    div.col-lg-6
+        div#articles(page="1")
+            include simple-articles.pug
    
-    #pagination
-        block pagination
+        #pagination
+            block pagination
 
     #mediaList
         block media-list

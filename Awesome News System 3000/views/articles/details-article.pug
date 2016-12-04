@@ -4,7 +4,7 @@ block app-title
     | #{result.title} Details
 
 block content
-    div.col-lg-8
+    div#article.col-lg-8(articleId= result._id)
         h1 #{result.title}
 
         h2 
@@ -27,22 +27,18 @@ block content
                 button.btn.btn-success
                     | Add to Favourite Articles
         
-            div.panel.panel-default
-                div.panel-heading
-                    div.panel-title
-                    | Comments
-                div.panel-body
-                    form(method="POST" action="/comment?articleId="+result._id)
-                        div.form-group
-                            textarea.form-control(rows="3" name="commentContent")
-                        button.btn.btn-default(type="submit")
-                            | Submit
+        div.panel.panel-default
+            div.panel-heading
+                div.panel-title
+                | Comments
+            div.panel-body
 
-                    each comment in result.comments
-                        hr
-                        div= comment.content
-                        p
-                        | by 
-                        a(href="/#")= comment.author?comment.author:'Anonymous'
-                        |  on  
-                        = new Date(comment.date).toLocaleString()
+                if user
+                    form(method="POST" action="/#")
+                        div.form-group
+                            textarea#commentContent.form-control(rows="3" name="commentContent")
+                        button#addComment.btn.btn-default(type="submit")
+                            | Add comment
+
+                div#comments
+    script(src="/static/scripts/commentManagement.js")
