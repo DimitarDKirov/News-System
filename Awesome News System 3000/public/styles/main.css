@@ -17,6 +17,7 @@ body {
 }
 
 #content {
+    position: relative;
     padding-left: 30px;
     padding-bottom: 30px;
 }
@@ -53,12 +54,23 @@ h1 {
     padding: 15px;
 }
 
+.media-save-btn{
+    margin: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 150px;
+    padding-right: 150px;
+    position: absolute;
+    left: 38%;
+}
+
 footer {
-    position: fixed;
     left: 0px;
     bottom: 0px;
     width: 100%;
 }
-footer p {
+footer p {   
+    margin-top: 70px;
+    padding-bottom: 30px;
     color: darkslategray;
 }

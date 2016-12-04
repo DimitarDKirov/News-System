@@ -6,19 +6,19 @@ block app-title
 block content
     h1 Select your favourite media to receive the latest news from them
 
-    div.list-group-item
-        form#create-shift-form(action="/sources/select-media", method="post")
-            div.form-group
-                each source in result
-                    div.col-sm-6.col-md-4
-                        div.checkbox-inline
-                            div.thumbnail
-                                a(href= source.url)
-                                    img.img-responsive(src= source.urlsToLogos.small alt="source-logo")
-                            input.checkbox-input(type="checkbox", name=`selectedMedia`, value=source.id, id=`select-media-${source.id}`)
-                            label(for=`select-media-${source.id}`)= source.name
-                        
-            div.form-group
-                div.col-lg-10
-                    button.btn.btn-success.btn-lg(type="submit" value="Submit") 
-                        | Save
+    
+    form#create-shift-form(action="/sources/select-media", method="post")
+        div.form-group
+            each source in result
+                div.col-sm-6.col-md-4
+                    div.checkbox-inline
+                        div.thumbnail
+                            a(href= source.url)
+                                img.img-responsive(src= source.urlsToLogos.small alt="source-logo")
+                        input.checkbox-input(type="checkbox", name=`selectedMedia`, value=source.id, id=`select-media-${source.id}`)
+                        label(for=`select-media-${source.id}`)= source.name
+        
+        div.form-group.panel.panel-default.media-select
+            div.col-lg-10
+                button.btn.btn-success.btn-lg.media-save-btn(type="submit" value="Submit") 
+                    | Save
