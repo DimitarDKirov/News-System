@@ -56,6 +56,9 @@ module.exports = function(models) {
                     return resolve(user);
                 })
             });
+
+
+
         }
     }
 }

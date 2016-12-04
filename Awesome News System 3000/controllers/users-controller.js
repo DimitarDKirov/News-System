@@ -11,7 +11,7 @@ module.exports = function(data) {
             res.render("../views/users/login");
         },
         profile(req, res) {
-            console.log("user: " + req.user);
+            // console.log("user: " + req.user);
             if (req.user === undefined) {
                 return res.render("../views/users/user-not-loged-in", {
                     result: req.user

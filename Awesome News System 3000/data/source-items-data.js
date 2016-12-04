@@ -1,9 +1,26 @@
 /* globals module Promise*/
 
-module.exports = function (models) {
+module.exports = function(models) {
     const SourceItem = models.sourceItem;
 
     return {
+        getAllSourceItemsIds() {
+            return new Promise((resolve, reject) => {
+                SourceItem.find((err, items) => {
+                    if (err) {
+                        return reject(err);
+                    }
+
+                    let ids = [];
+
+                    items.forEach(item => {
+                        ids.push(item.id);
+                    })
+
+                    return resolve(ids);
+                });
+            });
+        },
         getAllSourceItems() {
             return new Promise((resolve, reject) => {
                 SourceItem.find((err, sourceItems) => {

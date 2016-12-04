@@ -2,7 +2,7 @@
 
 let passport = require("passport");
 
-module.exports = function(data) {
+module.exports = function (data) {
     return {
         getSimpleArticles(req, res) {
             if (req.query.page === undefined) {
@@ -14,10 +14,10 @@ module.exports = function(data) {
                 return;
             }
 
-            data.getAllItems()
+            data.getAllSourceItemsIds()
                 .then(selectedMedia => {
                     if (req.isAuthenticated()) {
-                       // selectedMedia = [];
+                        selectedMedia = [];
                         req.user.selectedMedia.forEach(media => {
                             selectedMedia.push(media.name);
                         });
@@ -25,10 +25,16 @@ module.exports = function(data) {
 
                     data.getNewestSimpleArticles(req.query.page, selectedMedia)
                         .then(simpleArticles => {
-                            res.render("../views/articles/pagination", {
-                                result: simpleArticles,
-                                user: req.user
-                            });
+                            if (req.headers["requester"] === "ajax") {
+                                res.render("../views/articles/simple-articles", {
+                                    result: simpleArticles
+                                });
+                            } else {
+                                res.render("../views/articles/pagination", {
+                                    result: simpleArticles,
+                                    user: req.user
+                                });
+                            }
                         })
                         .catch(err => {
                             res.render("../views/articles/page-not-found");

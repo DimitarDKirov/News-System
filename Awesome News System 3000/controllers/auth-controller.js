@@ -2,11 +2,11 @@
 
 const passport = require("passport");
 
-module.exports = function (data) {
+module.exports = function(data) {
     return {
         login(req, res, next) {
-            const auth = passport.authenticate('local', function (error, user) {
-                
+            const auth = passport.authenticate('local', function(error, user) {
+
                 if (error) {
                     next(error);
                     return;
@@ -43,19 +43,30 @@ module.exports = function (data) {
                 password: req.body.password
             };
 
-            data.createNewUser(user)
-                .then(dbUser => {
-                    req.login(dbUser, error => {
-                    if (error) {
-                        next(error);
-                        return;
-                    }});
+            data.getAllSourceItemsIds()
+                .then(sourceItemsIds => {
+                    user.selectedMedia = [];
+                    sourceItemsIds.forEach(id => {
+                        user.selectedMedia.push({
+                            name: id
+                        });
+                    });
+                    data.createNewUser(user)
+                        .then(dbUser => {
+                            req.login(dbUser, error => {
+                                if (error) {
+                                    next(error);
+                                    return;
+                                }
+                            });
 
-                    res.render("../views/users/user-profile", {
-                        result: dbUser
-                    })
-                })
-                .catch(error => res.status(500).json(error));
+                            res.render("../views/users/user-profile", {
+                                result: dbUser,
+                                user: req.user
+                            });
+                        })
+                        .catch(error => res.status(500).json(error));
+                });
         }
     }
 };

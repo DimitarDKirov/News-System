@@ -20,10 +20,20 @@ module.exports = function(data) {
         addArticleToFavorites(req, res) {
             data.getDetailedArticleById(req.params.id)
                 .then(article => {
-                    data.addArticleToUserFavorites(req.user, article, req.params.id)
-                        .then(() => {
-                            res.redirect("/");
-                        })
+                    let isContained = 0;
+                    req.user.favouriteArticles.forEach(function(element) {
+                        if (element.title === article.title) {
+                            isContained += 1;
+                        }
+                    }, this);
+                    if (isContained === 0) {
+                        data.addArticleToUserFavorites(req.user, article, req.params.id)
+                            .then(() => {
+                                res.redirect("/");
+                            })
+                    } else {
+                        res.redirect("/")
+                    }
                 })
         }
     }

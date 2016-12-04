@@ -9,6 +9,8 @@ block content
 
         h2 
             | by #{result.author}
+            | on 
+            = new Date(result.publishedAt).toLocaleString()
     
         div.panel.panel-default.col-lg-12.content
             div.col-lg-6
