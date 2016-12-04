@@ -41,6 +41,16 @@ module.exports = function(data) {
                 result: req.user,
                 user: req.user
             })
+        },
+        getUserArticle(req, res) {
+            data.getDetailedArticleById(req.params.id)
+                .then(article => {
+                    res.render("../views/articles/details-article", {
+                        result: article,
+                        user: req.user,
+                        inFavourites: true
+                    })
+                })
         }
     }
 }

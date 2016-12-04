@@ -23,9 +23,10 @@ block content
                         | See more
         
         if user
-            form(method="POST" action="/article-details/"+result._id)
-                button.btn.btn-success
-                    | Add to Favourite Articles
+            if !inFavourites
+                form(method="POST" action="/article-details/"+result._id)
+                    button.btn.btn-success
+                        | Add to Favourite Articles
         
         div.panel.panel-default
             div.panel-heading

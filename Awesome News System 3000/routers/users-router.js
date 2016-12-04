@@ -17,7 +17,8 @@ module.exports = function(app, data) {
         .get("/profile", usersController.profile)
         .get("/logout", authController.logout)
         .get("/unauthorized", usersController.unauthorized)
-        .get("/favourites", usersController.getUserFavouriteArticles);
+        .get("/favourites", usersController.getUserFavouriteArticles)
+        .get("/favourites/:id", usersController.getUserArticle);
 
     app.use("/user", usersRouter);
 }
