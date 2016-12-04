@@ -170,8 +170,8 @@ describe("Tests Users Data", () => {
 
         beforeEach(() => {
             sinon.stub(User, "findOne", (query, cb) => {
-                let id = query._id;
-                let foundUser = users.find(x => x.username === existingUsername);
+                let title = query.title;
+                let foundUser = users.find(x => x.username === title);
                 cb(null, foundUser);
             });
         });
