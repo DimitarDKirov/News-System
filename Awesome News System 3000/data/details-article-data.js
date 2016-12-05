@@ -27,8 +27,13 @@ module.exports = function(models) {
             });
         },
         addCommentByArticle(articleId, comment) {
+            const newComment={
+                author: comment.author,
+                content: comment.content,
+                date: comment.date
+            };
             return new Promise((resolve, reject) => {
-                detailedArticle.findOneAndUpdate({ _id: articleId }, { $push: { comments: comment } }, { new: true }, (err, doc) => {
+                detailedArticle.findOneAndUpdate({ _id: articleId }, { $push: { comments: newComment } }, { new: true }, (err, doc) => {
                     if (err) {
                         return reject(err);
                     }
