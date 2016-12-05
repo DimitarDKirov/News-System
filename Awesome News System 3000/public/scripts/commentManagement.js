@@ -43,7 +43,7 @@
                 }
 
                 comments.forEach(comment => {
-                    let commentDate = new Date(comment.date).toLocaleString();
+                    let commentDate = new Date(comment.date).toLocaleString("de");
                     let author = comment.author ? comment.author : 'Anonymous';
                     let $authorLine = $("<p>")
                         .addClass("small")

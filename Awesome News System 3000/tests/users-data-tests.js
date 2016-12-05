@@ -17,8 +17,8 @@ describe("Tests Users Data", () => {
         constructor(params) {
             this.username = params.username;
             this.email = params.email;
-            this.salt = hashing.generateSalt();
-            this.passHash = hashing.hashPassword(this.salt, params.password);
+            this.salt = params.salt;
+            this.passHash = params.hashing;
             this.roles = params.roles || "user";
             this.favouriteArticles = params.favouriteArticles || [];
             this.selectedMedia = params.selectedMedia || [];
@@ -27,15 +27,11 @@ describe("Tests Users Data", () => {
         save(err) {
 
         }
-        static find() {
-
-        }
-        static findOne() {
-
-        }
+        static find() { }
+        static findOne() { }
     }
 
-    let data = require("../data/users-data")({User});
+    let data = require("../data/users-data")({ user: User });
 
 
     describe("Test getAllUsers()", () => {
@@ -99,15 +95,17 @@ describe("Tests Users Data", () => {
     });
 
     describe("Test createNewUser(user)", () => {
+        beforeEach(() => {
+            sinon.stub(User.prototype, "save", cb => {
+                cb(null);
+            });
+        });
 
         afterEach(() => {
             sinon.restore();
         });
 
         it("Expect to save a new user", done => {
-            sinon.stub(User.prototype, "save", cb => {
-                cb(null);
-            });
 
             let user = {
                 username: "Peter",
@@ -116,15 +114,12 @@ describe("Tests Users Data", () => {
             };
             data.createNewUser(user)
                 .then(actualUser => {
-                    exprect(actualUser.username).to.equal("Peter");
+                    expect(actualUser.username).to.equal("Peter");
                     done();
                 });
         });
 
         it("Expect to fail when username is empty", done => {
-            sinon.stub(User.prototype, "save", cb => {
-                cb(null);
-            });
 
             let user = {
                 username: "",
@@ -132,16 +127,13 @@ describe("Tests Users Data", () => {
                 password: "pass123"
             };
             data.createNewUser(user)
-                .then(actualUser => {
-                    exprect(actualUser.username).not.to.be.null;
+                .catch(error => {
+                    expect(error.reason).to.include("Username must be between");
                     done();
                 });
         });
 
         it("Expect to fail when password is empty", done => {
-            sinon.stub(User.prototype, "save", cb => {
-                cb(null);
-            });
 
             let user = {
                 username: "Peter",
@@ -149,8 +141,8 @@ describe("Tests Users Data", () => {
                 password: ""
             };
             data.createNewUser(user)
-                .then(actualUser => {
-                    exprect(actualUser.passHash).not.to.be.null;
+                .catch(error => {
+                    expect(error.reason).to.include("Password must be between");
                     done();
                 });
         });
@@ -170,8 +162,8 @@ describe("Tests Users Data", () => {
 
         beforeEach(() => {
             sinon.stub(User, "findOne", (query, cb) => {
-                let title = query.title;
-                let foundUser = users.find(x => x.username === title);
+                let username = query.username;
+                let foundUser = users.find(x => x.username === username);
                 cb(null, foundUser);
             });
         });
@@ -183,10 +175,10 @@ describe("Tests Users Data", () => {
         it("Expect to return the user", done => {
 
             data.getUserByUsername(existingUsername)
-                .then((actualUser => {
-                    expect(actualUser).to.equal(user);
+                .then(actualUser => {
+                    expect(actualUser).to.eql(user);
                     done();
-                }));
+                });
         });
 
         it("Expect it to return null if no user is found", done => {
@@ -201,6 +193,13 @@ describe("Tests Users Data", () => {
     describe("Test updateUserWithSelectedMedia(userId, selectedMedia)", () => {
         let existingUserId = 1;
         let existingSelectedMedia = ["mtv news", "tech radar"];
+
+        let user = {
+            _id: existingUserId
+        };
+
+        let users = [user];
+
 
         beforeEach(() => {
             sinon.stub(User, "findOne", (query, cb) => {
@@ -220,7 +219,7 @@ describe("Tests Users Data", () => {
 
         it("Expects to save the selected media to the user", done => {
             data.updateUserWithSelectedMedia(existingUserId, existingSelectedMedia)
-            .then(done());
+                .then(done());
         });
     });
 });

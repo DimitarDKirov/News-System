@@ -20,7 +20,7 @@ describe("Tests Simple Article Data", () => {
             this.publishedAt = article.publishedAt;
         }
 
-        paginate() {
+        static paginate() {
 
         }
         static find() {
@@ -31,19 +31,15 @@ describe("Tests Simple Article Data", () => {
         }
     }
 
-    let data = require("../data/simple-article-data")({ SimpleArticle });
+    let data = require("../data/simple-article-data")({ simpleArticle: SimpleArticle });
 
     describe("Test getNewestSimpleArticles()", () => {
         it("Expext to return 2 simple articles", done => {
             //arrange
-            let simpleArticles = ["Firt Article", "Second Article"];
+            let simpleArticles = ["First Article", "Second Article"];
 
-            sinon.stub(SimpleArticle, "find", cb => {
-                cb(null, articles);
-            });
-
-            sinon.stub(SimpleArticle.prototype, "paginate", cb => {
-                cb(null);
+            sinon.stub(SimpleArticle, "paginate", (query, params, cb) => {
+                cb(null, { docs: simpleArticles });
             });
 
             //act
@@ -90,7 +86,7 @@ describe("Tests Simple Article Data", () => {
 
             data.getSimpleArticleById(existingSimpleArticleId + 1)
                 .then((actualSimpleArticle => {
-                    expect(actualSimpleArticle.title).to.equal(null);
+                    expect(actualSimpleArticle).to.equal(null);
                     done();
                 }));
         });
@@ -107,8 +103,8 @@ describe("Tests Simple Article Data", () => {
         let simpleArticles = [simpleArticle];
 
         beforeEach(() => {
-            sinon.stub(SimpleArticle, "findOne", (query, cb) => {
-                let title = query.title;
+            sinon.stub(SimpleArticle, "find", (query, cb) => {
+                let title = query.title.$regex;
                 let foundSimpleArticle = simpleArticles.find(x => x.title === title);
                 cb(null, foundSimpleArticle);
             });
@@ -131,7 +127,7 @@ describe("Tests Simple Article Data", () => {
 
             data.getSimpleArticleByName("Hello")
                 .then((actualSimpleArticle => {
-                    expect(actualSimpleArticle.title).to.equal(null);
+                    expect(actualSimpleArticle).to.equal(null);
                     done();
                 }));
         });

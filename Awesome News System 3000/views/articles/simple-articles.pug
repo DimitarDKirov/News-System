@@ -7,7 +7,7 @@ each article in result
                     | #{article.title}
         div.panel-footer
             | published at 
-            = new Date(article.publishedAt).toLocaleString()
+            = new Date(article.publishedAt).toLocaleString("de")
             |  by 
             a(href="#")
                 | #{article.source}

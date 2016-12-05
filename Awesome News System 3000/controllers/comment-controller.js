@@ -1,6 +1,6 @@
 /* globals require module */
 
-module.exports = function (data) {
+module.exports = function(data) {
     return {
         getComments(req, res) {
             const articleId = req.query.articleId;
@@ -33,8 +33,8 @@ module.exports = function (data) {
             const articleId = req.body.articleId;
 
             data.addComment(null, newComment)
-                .then(() => {
-                    return data.addCommentByArticle(articleId, newComment);
+                .then((comment) => {
+                    return data.addCommentByArticle(articleId, comment);
                 })
                 .then(article => {
                     return res.status(201).send(JSON.stringify(article.comments));
