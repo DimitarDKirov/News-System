@@ -6,7 +6,7 @@ The aim of the project is to give our users the latest news from many sources as
 ## Project information
 The project consists of two parts - server and requester which run in parallel. The requester makes regular requests to newsapi.org and updates our database. At the same time the server provides the services to our users.
 
-Also available on [https://awesomenews3000.herokuapp.com](https://awesomenews3000.herokuapp.com)
+Also available on [https://awesomenews3000.herokuapp.com](https://awesomenews3000.herokuapp.com) and [http://best.telerikacademy.com](http://best.telerikacademy.com/projects/384/Awesome-News-3000)
 
 ## Users
 #### Normal access 
